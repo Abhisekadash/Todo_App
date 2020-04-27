@@ -13,7 +13,7 @@ def get_connection_and_cursor():
         user = os.environ['USER'],
         password = os.environ['PASSWORD'],
         host = os.environ['HOST'],
-        port = int(os.environ['PORT']),
+        port = 5432,
         )
 	mycursor=conn.cursor()
 	return conn, mycursor
