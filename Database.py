@@ -18,7 +18,7 @@ def get_connection_and_cursor():
 
 def create(table):
 	conn,mycursor=get_connection_and_cursor()
-	table_list=mycursor.execute("\\d")
+	table_list=mycursor.execute("\d")
 	logging.warning(table_list+"--------------------------")
 	if table in table_list:
 		print("table present")
