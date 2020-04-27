@@ -1,5 +1,4 @@
 '''This is the database configuration of the TODO App.
-
 It store the items and item status.
 
 '''
