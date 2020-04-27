@@ -18,6 +18,8 @@ def get_connection_and_cursor():
         host = os.environ['HOST'],
         port = int(os.environ['PORT'])
      )
+    print(os.environ['PORT'])
+    print(type(os.environ['PORT']))
     # Invoke curser() to access the db.
     mycursor=conn.cursor()
     return conn, mycursor
