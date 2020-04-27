@@ -7,6 +7,7 @@ by using username password
 def get_connection_and_cursor():
 	print(os.environ['PORT'])
     print(type(os.environ['PORT']))
+    print()
     conn = psycopg2.connect(
         database=os.environ['DATABASE'],
         user = os.environ['USER'],
