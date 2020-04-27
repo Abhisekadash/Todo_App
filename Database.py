@@ -4,6 +4,7 @@ It store the items and item status.
 
 '''
 import psycopg2
+import os
 '''
 Using mysql.connector To connect python to database 
 by using username password
@@ -11,21 +12,30 @@ by using username password
 '''
 def get_connection_and_cursor():
     conn = psycopg2.connect(
-        database="df23sq6s0uglsf",
-        user = "cbdlrqjcqwyhmp",
-        password = "0249dbfc32587f1f9bc9626ebef7d0d665114be41d002f4cc586ed16413fc8a7",
-        host = "ec2-34-225-82-212.compute-1.amazonaws.com",
-        port = "5432"
+        database=os.environ['DATABASE'],
+        user = os.environ['USER'],
+        password = os.environ['PASSWORD'],
+        host = os.environ['HOST'],
+        port = os.environ['PORT']
      )
     # Invoke curser() to access the db.
     mycursor=conn.cursor()
     return conn, mycursor
 
+def create(table):
+	conn,mycursor=get_connection_and_cursor()
+	table_list=mycursor.execute("show tables")
+	if table in table_list:
+		print("table present")
+	else:
+		mycursor.execute("create table items(items varchar(100),status varchar(10))")
+	conn.execute()
+create(os.environ['TABLE_NAME'])
 
 # insert_items() for insert elements.
 def insert_items(item1,status1):
 	conn,mycursor=get_connection_and_cursor()
-	sql="insert into items(items,status) values (%s,%s)"
+	sql=f"insert into {os.environ['TABLE_NAME']}(items,status) values (%s,%s)"
 	val=(item1,status1)
 	mycursor.execute(sql,val)
 	conn.commit()
@@ -33,14 +43,14 @@ def insert_items(item1,status1):
 # To display the item and item status.
 def display():
 	conn,mycursor=get_connection_and_cursor()
-	mycursor.execute("select * from items")
+	mycursor.execute(f"select * from {os.environ['TABLE_NAME']}")
 	mylist=mycursor.fetchall()
 	return mylist
 
 # To delete the item from database.
 def delete_items(id1):
 	conn,mycursor=get_connection_and_cursor()
-	sql="delete from items where items = %s"
+	sql=f"delete from items where {os.environ['TABLE_NAME']} = %s"
 	val=(id1,)
 	mycursor.execute(sql,val)
 	conn.commit()
@@ -48,7 +58,7 @@ def delete_items(id1):
 # This will update the item from incomplete to coomplete or vice-versa.
 def update_items(item_name,status2):
 	conn,mycursor=get_connection_and_cursor()
-	sql="update items set status=%s where items=%s"
+	sql=f"update {os.environ['TABLE_NAME']} set status=%s where items=%s"
 	val=(status2,item_name)
 	mycursor.execute(sql,val)
 	conn.commit()
