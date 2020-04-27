@@ -6,19 +6,17 @@ by using username password
 '''
 def get_connection_and_cursor():
 	print(os.environ['PORT'])
-    print(type(os.environ['PORT']))
-    print()
-    conn = psycopg2.connect(
+	print(type(os.environ['PORT']))
+	print()
+	conn = psycopg2.connect(
         database=os.environ['DATABASE'],
         user = os.environ['USER'],
         password = os.environ['PASSWORD'],
         host = os.environ['HOST'],
-        port = int(os.environ['PORT'])
-     )
-    
-    # Invoke curser() to access the db.
-    mycursor=conn.cursor()
-    return conn, mycursor
+        port = int(os.environ['PORT']),
+        )
+	mycursor=conn.cursor()
+	return conn, mycursor
 
 def create(table):
 	conn,mycursor=get_connection_and_cursor()
