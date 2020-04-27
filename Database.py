@@ -20,7 +20,7 @@ def get_connection_and_cursor():
 
 def create(table):
 	conn,mycursor=get_connection_and_cursor()
-	table_list=mycursor.execute("show tables")
+	table_list=mycursor.execute("\\dt")
 	if table in table_list:
 		print("table present")
 	else:
