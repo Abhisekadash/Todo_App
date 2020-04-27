@@ -21,6 +21,7 @@ def main():
 @app.route('/index')
 def index():
 	todo=Database.display()
+	print(todo)
 	return render_template('index.html',todos=todo)
 
 #app.route('/frame') to start the frame.html
