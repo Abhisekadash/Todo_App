@@ -1,13 +1,11 @@
 import psycopg2
 import os
+import logging
 '''
 Using mysql.connector To connect python to database 
 by using username password
 '''
 def get_connection_and_cursor():
-	print(os.environ['PORT'])
-	print(type(os.environ['PORT']))
-	print()
 	conn = psycopg2.connect(
         database=os.environ['DATABASE'],
         user = os.environ['USER'],
@@ -20,7 +18,8 @@ def get_connection_and_cursor():
 
 def create(table):
 	conn,mycursor=get_connection_and_cursor()
-	table_list=mycursor.execute("\\dt")
+	table_list=mycursor.execute("\\d")
+	logging.warning(table_list+"--------------------------")
 	if table in table_list:
 		print("table present")
 	else:
