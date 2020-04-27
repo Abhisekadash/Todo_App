@@ -1,4 +1,5 @@
-'''This is the database configuration of the TODO App.
+'''
+This is the database configuration of the TODO App.
 It store the items and item status.
 '''
 import psycopg2
@@ -6,7 +7,6 @@ import os
 '''
 Using mysql.connector To connect python to database 
 by using username password
-
 '''
 def get_connection_and_cursor():
 	print(os.environ['PORT'])
