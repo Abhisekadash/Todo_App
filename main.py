@@ -10,7 +10,7 @@ from flask import Flask, render_template,redirect,request,url_for
 import Database
 
 #
-app=Flask(__name__)
+app = Flask(__name__)
 
 #app.route('/') is to start the main client side html.
 @app.route('/')
