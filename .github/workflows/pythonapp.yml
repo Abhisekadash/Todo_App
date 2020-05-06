@@ -38,4 +38,4 @@ jobs:
       with:
         args: container:login
     - name: Deploy to production
-      run: git push https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/<heroku-project>.git master
+      run: git push https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git master
