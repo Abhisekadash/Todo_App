@@ -44,4 +44,4 @@ jobs:
       with:
         args: git:remote -a ${{ secrets.HEROKU_APP_NAME }}
     - name: push
-      run: git subtree push  heroku master
+      run: git push heroku HEAD:master -f
